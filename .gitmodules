@@ -10,6 +10,3 @@
 [submodule "copilot_personalizado"]
 	path = copilot_personalizado
 	url = git@github.com:pepepica12/copilot_personalizado.git
-[submodule "Telemetr-a-/api"]
-    path = Telemetr-a-/api
-    url = git@github.com:pepepica12/Api.git
