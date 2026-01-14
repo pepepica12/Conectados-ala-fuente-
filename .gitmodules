@@ -4,3 +4,9 @@
 [submodule "sfds"]
 	path = sfds
 	url = git@github.com:pepepica12/sfds.git
+[submodule "Telemetr-a-"]
+	path = Telemetr-a-
+	url = git@github.com:pepepica12/Telemetr-a-.git
+[submodule "copilot_personalizado"]
+	path = copilot_personalizado
+	url = git@github.com:pepepica12/copilot_personalizado.git
