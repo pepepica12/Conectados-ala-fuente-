@@ -1,0 +1,68 @@
+name: Orquestador CI/CD
+
+on:
+  push:
+    branches:
+ 
+ 
+ 
+      - main
+  workflow_dispatch:
+
+jobs:
+  copilot_personalizado:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          cd copilot_personalizado
+          npm install
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+  telemetra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          cd Telemetr-a-
+          pip install -r requirements.txt
+          railway up --service backend
+
+  inyeccion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          cd Inyecci-n-
+          npm install
+          railway up --service inyeccion
+
+  realwey:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          cd realwey
+          npm install
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }
+es

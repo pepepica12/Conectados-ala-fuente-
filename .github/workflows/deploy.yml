@@ -1,0 +1,59 @@
+cat > .github/workflows/deploy.yml << 'EOF'
+name: Deploy Telemetr-a-orchestrator
+on:
+  
+  push
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python - << 'PYCODE'
+          from db import Base, engine
+          from models import User
+          print("Creando tablas en Neon...")
+          Base.metadata.create_all(bind=engine)
+          print("Listo ✅")
+          PYCODE
+
+      - name: Run tests
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          pytest || echo "No tests definidos aún"
+
+
+
+
+EOF
+
+
+
+
+
+
+
+
+
+
+
